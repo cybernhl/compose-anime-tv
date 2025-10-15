@@ -32,7 +32,7 @@ object Versions {
   const val paging = "3.3.6"
   const val pagingCompose = "3.3.6"
   const val okhttp = "4.9.3"
-  const val room = "2.4.3"
+  const val room = "2.6.1"
   const val appCenter = "4.1.0"
   const val coil = "1.4.0"
   const val timber = "4.7.1"

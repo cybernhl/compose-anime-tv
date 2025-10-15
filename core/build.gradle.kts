@@ -14,6 +14,14 @@ android {
     sourceCompatibility = Versions.Java.java
     targetCompatibility = Versions.Java.java
   }
+  kotlinOptions {
+    jvmTarget = JavaVersion.VERSION_11.toString()
+    allWarningsAsErrors = false
+    freeCompilerArgs = listOf(
+      "-Xopt-in=kotlin.RequiresOptIn",
+      "-Xallow-unstable-dependencies"
+    )
+  }
   buildFeatures {
     compose = true
   }

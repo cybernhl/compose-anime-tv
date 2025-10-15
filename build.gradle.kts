@@ -18,17 +18,6 @@ buildscript {
 allprojects {
   configRepository()
 
-  tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-      jvmTarget = Versions.Java.jvmTarget
-      allWarningsAsErrors = false
-      freeCompilerArgs = listOf(
-        "-Xopt-in=kotlin.RequiresOptIn",
-        "-Xallow-unstable-dependencies"
-      )
-    }
-  }
-
   apply(plugin = "com.diffplug.spotless")
   spotless {
     kotlin {
