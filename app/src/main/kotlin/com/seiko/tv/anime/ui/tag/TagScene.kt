@@ -33,7 +33,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.itemsIndexed
 import com.seiko.compose.focuskit.ScrollBehaviour
 import com.seiko.compose.focuskit.animateScrollToItem
 import com.seiko.compose.focuskit.focusClick
@@ -63,8 +62,11 @@ fun TagScene(uri: String) {
     modifier = Modifier.fillMaxSize(),
   ) {
     LazyColumn(state = listState) {
-      itemsIndexed(animes) { index, anime ->
-        anime ?: return@itemsIndexed
+      items(
+        count = animes.itemCount,
+      ) { index ->
+        val anime = animes[index]
+        anime ?: return@items
 
         val focusRequester = remember { FocusRequester() }
         var isFocused by remember { mutableStateOf(false) }
