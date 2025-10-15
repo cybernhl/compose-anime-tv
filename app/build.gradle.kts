@@ -3,6 +3,7 @@ plugins {
   kotlin("android")
   kotlin("plugin.parcelize")
   id("com.google.devtools.ksp").version(Versions.ksp)
+  id("org.jetbrains.kotlin.plugin.compose") version "2.2.0"
   id("de.mannodermaus.android-junit5")
 }
 
@@ -59,9 +60,7 @@ android {
     buildConfig = true
     compose = true
   }
-  composeOptions {
-    kotlinCompilerExtensionVersion = "1.5.15"
-  }
+
   packagingOptions {
     resources {
       excludes.addAll(

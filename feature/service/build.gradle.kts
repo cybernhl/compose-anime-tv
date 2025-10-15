@@ -2,13 +2,8 @@ plugins {
   id("com.android.library")
   kotlin("android")
   id("com.google.devtools.ksp").version(Versions.ksp)
+  id("androidx.room") version "2.8.2"
   id("de.mannodermaus.android-junit5")
-}
-
-ksp {
-  arg("room.schemaLocation", "$projectDir/schemas")
-  arg("room.incremental", "true")
-  arg("room.expandProjection", "true")
 }
 
 android {
@@ -28,6 +23,9 @@ android {
       "-Xopt-in=kotlin.RequiresOptIn",
       "-Xallow-unstable-dependencies"
     )
+  }
+  room {
+    schemaDirectory("$projectDir/schemas")
   }
 }
 

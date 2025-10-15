@@ -2,6 +2,7 @@ plugins {
   id("com.android.library")
   kotlin("android")
   id("com.google.devtools.ksp").version(Versions.ksp)
+  id("org.jetbrains.kotlin.plugin.compose") version "2.2.0"
 }
 
 android {
@@ -25,9 +26,7 @@ android {
   buildFeatures {
     compose = true
   }
-  composeOptions {
-    kotlinCompilerExtensionVersion = "1.5.15"
-  }
+
   sourceSets {
     getByName("debug") {
       java.srcDirs(

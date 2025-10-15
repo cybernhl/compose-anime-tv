@@ -2,7 +2,7 @@ import org.gradle.api.JavaVersion
 
 object Versions {
   object Kotlin {
-    const val lang = "1.9.25"
+    const val lang = "2.2.0"
     const val coroutines = "1.9.0"
     const val serialization = "1.7.3"
   }
@@ -12,7 +12,7 @@ object Versions {
     val java = JavaVersion.VERSION_11
   }
 
-  const val ksp = "1.9.25-1.0.20"
+  const val ksp = "2.2.0-2.0.2"
   const val kotlinPoet = "1.10.1"
   const val ktlint = "0.41.0"
   const val spotless = "5.12.5"
@@ -32,7 +32,7 @@ object Versions {
   const val paging = "3.3.6"
   const val pagingCompose = "3.3.6"
   const val okhttp = "4.9.3"
-  const val room = "2.6.1"
+  const val room = "2.8.2"
   const val appCenter = "4.1.0"
   const val coil = "1.4.0"
   const val timber = "4.7.1"
