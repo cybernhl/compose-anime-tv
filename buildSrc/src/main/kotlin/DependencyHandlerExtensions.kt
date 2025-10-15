@@ -1,3 +1,4 @@
+import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 internal fun DependencyHandler.add(
@@ -10,6 +11,10 @@ internal fun DependencyHandler.add(
 
 internal fun DependencyHandler.api(name: String, version: String? = null) =
   add("api", name, version)
+
+internal fun DependencyHandler.implementation(dependency: Dependency) {
+  add("implementation", dependency)
+}
 
 internal fun DependencyHandler.implementation(name: String, version: String? = null) =
   add("implementation", name, version)

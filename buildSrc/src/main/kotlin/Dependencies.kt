@@ -19,13 +19,17 @@ fun DependencyHandlerScope.koin() {
 }
 
 fun DependencyHandlerScope.compose() {
-  implementation("androidx.compose.ui:ui", Versions.compose)
-  implementation("androidx.compose.ui:ui-tooling", Versions.compose)
-  implementation("androidx.compose.foundation:foundation", Versions.compose)
-  implementation("androidx.compose.animation:animation", Versions.compose)
-  implementation("androidx.compose.material:material", Versions.compose)
-  implementation("androidx.compose.material:material-icons-core", Versions.compose)
-  implementation("androidx.compose.material:material-icons-extended", Versions.compose)
+  val composeBom = platform("androidx.compose:compose-bom:2025.10.00")
+  implementation(composeBom)
+
+  implementation("androidx.compose.ui:ui")
+  implementation("androidx.compose.ui:ui-tooling")
+  implementation("androidx.compose.foundation:foundation")
+  implementation("androidx.compose.animation:animation")
+  implementation("androidx.compose.material:material")
+  implementation("androidx.compose.material:material-icons-core")
+  implementation("androidx.compose.material:material-icons-extended")
+
   implementation("androidx.navigation:navigation-compose", Versions.navigation)
   implementation("androidx.paging:paging-compose", Versions.pagingCompose)
   implementation("com.google.accompanist:accompanist-insets", Versions.accompanist)
