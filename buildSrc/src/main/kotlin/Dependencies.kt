@@ -15,6 +15,7 @@ fun DependencyHandlerScope.koin() {
   api("io.insert-koin:koin-core:${Versions.koin}")
   api("io.insert-koin:koin-android:${Versions.koin}")
   api("io.insert-koin:koin-androidx-compose:${Versions.koin}")
+  api("io.insert-koin:koin-compose-viewmodel:${Versions.koin}")
 }
 
 fun DependencyHandlerScope.compose() {

@@ -51,7 +51,7 @@ fun FeedAnimePage(tab: AnimeTab, modifier: Modifier = Modifier) {
         if (!parentHasFocused) return@onFocusDirection false
         when {
           focusIndex == 0 && it == FocusDirection.Up -> {
-            focusManager.moveFocus(FocusDirection.Out)
+            focusManager.moveFocus(FocusDirection.Exit)
           }
         }
         false

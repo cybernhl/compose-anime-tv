@@ -21,7 +21,7 @@ object Versions {
   const val extJUnitVersion = "1.1.3-rc01"
   const val espressoVersion = "3.4.0-rc01"
 
-  const val koin = "3.1.5"
+  const val koin = "4.1.1"
   const val compose = "1.0.5"
   const val activity = "1.4.0"
   const val lifecycle = "2.4.0"

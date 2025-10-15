@@ -28,13 +28,13 @@ import com.seiko.tv.anime.LocalAppNavigator
 import com.seiko.tv.anime.ui.common.foundation.GroupItem
 import com.seiko.tv.anime.ui.common.foundation.LazyGridFor
 import com.seiko.tv.anime.ui.composer.navigation.Router
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 private const val FavoriteColumnNum = 5
 
 @Composable
 fun FavoriteScene() {
-  val viewModel: FavoriteViewModel = getViewModel()
+  val viewModel: FavoriteViewModel = koinViewModel()
   val list = viewModel.favorites.collectAsLazyPagingItems()
 
   val navigator = LocalAppNavigator.current

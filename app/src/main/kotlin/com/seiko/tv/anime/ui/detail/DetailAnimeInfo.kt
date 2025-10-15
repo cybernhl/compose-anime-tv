@@ -163,7 +163,7 @@ private fun DetailAnimeInfoDesc(
       .onFocusDirection {
         when (it) {
           FocusDirection.Up,
-          FocusDirection.Down -> focusManager.moveFocus(FocusDirection.Out)
+          FocusDirection.Down -> focusManager.moveFocus(FocusDirection.Exit)
         }
         false
       }

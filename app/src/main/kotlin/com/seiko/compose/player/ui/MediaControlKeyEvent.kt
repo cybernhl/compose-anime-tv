@@ -32,7 +32,7 @@ fun MediaControlKeyEvent(modifier: Modifier = Modifier) {
     modifier = modifier
       .onFocusDirection {
         when (it) {
-          FocusDirection.In -> {
+          FocusDirection.Enter -> {
             if (state.isPlaying) {
               controller.pause()
               controller.showControl()
@@ -58,7 +58,7 @@ fun MediaControlKeyEvent(modifier: Modifier = Modifier) {
             controller.seekForward()
             true
           }
-          FocusDirection.Out -> {
+          FocusDirection.Exit -> {
             if (state.controlsVisible) {
               controller.hideControl()
               true

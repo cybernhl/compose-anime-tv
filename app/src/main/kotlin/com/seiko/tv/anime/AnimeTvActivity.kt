@@ -25,11 +25,11 @@ import com.seiko.tv.anime.util.NoRippleIndication
 import com.seiko.tv.anime.util.ToastScreenComponent
 import com.seiko.tv.anime.util.autoSizeDensity
 import org.koin.android.ext.android.inject
+import org.koin.android.scope.AndroidScopeComponent
 import org.koin.androidx.scope.activityScope
-import org.koin.core.component.KoinScopeComponent
 import org.koin.core.scope.Scope
 
-class AnimeTvActivity : ComponentActivity(), KoinScopeComponent, DoubleBackPressed by DoubleBackPressedDelegate() {
+class AnimeTvActivity : ComponentActivity(), AndroidScopeComponent, DoubleBackPressed by DoubleBackPressedDelegate() {
 
   override val scope: Scope by activityScope()
 

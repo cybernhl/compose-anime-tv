@@ -25,7 +25,7 @@ import com.seiko.tv.anime.LocalAppNavigator
 import com.seiko.tv.anime.ui.common.SetSystemBarColor
 import com.seiko.tv.anime.ui.common.foundation.RoundIcon
 import com.seiko.tv.anime.ui.composer.navigation.Router
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun HomeScene() {
@@ -33,7 +33,7 @@ fun HomeScene() {
 
   val navigator = LocalAppNavigator.current
 
-  val viewModel: HomeViewModel = getViewModel()
+  val viewModel: HomeViewModel = koinViewModel()
   val list by viewModel.list.collectAsState()
 
   var focusIndex by rememberSaveable { mutableStateOf(0) }

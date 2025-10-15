@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.stateIn
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
@@ -26,7 +26,7 @@ class FeedAnimeViewModel(
 
 @Composable
 fun feedAnimeViewModel(tab: AnimeTab): FeedAnimeViewModel {
-  return getViewModel {
+  return koinViewModel {
     parametersOf(tab)
   }
 }

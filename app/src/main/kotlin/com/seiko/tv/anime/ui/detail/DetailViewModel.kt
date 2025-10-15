@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.flow.stateIn
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
@@ -64,7 +64,7 @@ class DetailViewModel(
 
 @Composable
 fun detailViewModel(uri: String): DetailViewModel {
-  return getViewModel {
+  return koinViewModel {
     parametersOf(uri)
   }
 }

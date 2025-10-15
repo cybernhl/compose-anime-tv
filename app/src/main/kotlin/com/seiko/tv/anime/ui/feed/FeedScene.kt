@@ -26,14 +26,14 @@ import com.google.accompanist.pager.rememberPagerState
 import com.seiko.tv.anime.ui.common.SetSystemBarColor
 import com.seiko.tv.anime.ui.common.foundation.LoadingState
 import com.seiko.tv.anime.ui.common.foundation.TvTabBar
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun FeedScene() {
   SetSystemBarColor()
 
-  val viewModel: FeedViewModel = getViewModel()
+  val viewModel: FeedViewModel = koinViewModel()
   val tabs by viewModel.tabs.collectAsState()
 
   if (tabs.isEmpty()) {

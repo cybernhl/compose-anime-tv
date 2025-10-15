@@ -29,19 +29,19 @@ fun Modifier.handleDirection(
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun Modifier.handleEnter(onAction: () -> Unit) =
-  handleDirection(FocusDirection.In) { onAction(); true }
+  handleDirection(FocusDirection.Enter) { onAction(); true }
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun Modifier.handleBack(onAction: () -> Unit) =
-  handleDirection(FocusDirection.Out) { onAction(); true }
+  handleDirection(FocusDirection.Exit) { onAction(); true }
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun Modifier.handleEnterReturn(onAction: () -> Boolean) =
-  handleDirection(FocusDirection.In, onAction)
+  handleDirection(FocusDirection.Enter, onAction)
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun Modifier.handleBackReturn(onAction: () -> Boolean) =
-  handleDirection(FocusDirection.Out, onAction)
+  handleDirection(FocusDirection.Exit, onAction)
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun Modifier.focusClick(onClick: () -> Unit) =
