@@ -16,6 +16,6 @@ pluginManagement {
     arrayOf(
       id("com.android.application"),
       id("com.android.library")
-    ).forEach { it version "7.0.4" }
+    ).forEach { it version "8.11.1" }
   }
 }

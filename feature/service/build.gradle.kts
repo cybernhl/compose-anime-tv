@@ -13,6 +13,10 @@ ksp {
 
 android {
   compileSdk = AndroidSdk.compile
+  namespace= "com.seiko.tv.anime.feature.service"
+  buildFeatures {
+    buildConfig = true
+  }
   compileOptions {
     sourceCompatibility = Versions.Java.java
     targetCompatibility = Versions.Java.java

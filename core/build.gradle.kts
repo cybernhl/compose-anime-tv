@@ -6,6 +6,7 @@ plugins {
 
 android {
   compileSdk = AndroidSdk.compile
+  namespace= "com.seiko.tv.anime"
   defaultConfig {
     minSdk = AndroidSdk.min
   }
@@ -17,7 +18,7 @@ android {
     compose = true
   }
   composeOptions {
-    kotlinCompilerExtensionVersion = Versions.compose
+    kotlinCompilerExtensionVersion = "1.5.15"
   }
   sourceSets {
     getByName("debug") {

@@ -7,6 +7,7 @@ plugins {
 }
 
 android {
+  namespace= Package.applicationId
   compileSdk = AndroidSdk.compile
   buildToolsVersion = AndroidSdk.buildTools
   defaultConfig {
@@ -47,10 +48,11 @@ android {
     targetCompatibility = Versions.Java.java
   }
   buildFeatures {
+    buildConfig = true
     compose = true
   }
   composeOptions {
-    kotlinCompilerExtensionVersion = Versions.compose
+    kotlinCompilerExtensionVersion = "1.5.15"
   }
   packagingOptions {
     resources {

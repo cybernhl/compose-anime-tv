@@ -2,7 +2,6 @@ plugins {
   id("com.android.application") apply false
   id("com.android.library") apply false
   id("com.diffplug.spotless").version(Versions.spotless)
-  id("com.gradleup.auto.manifest").version("1.0.4")
 }
 
 buildscript {
@@ -66,8 +65,4 @@ allprojects {
   configurations.all {
     exclude(group = "androidx.lifecycle", module = "lifecycle-livedata")
   }
-}
-
-autoManifest {
-  packageName.set(Package.applicationId)
 }
