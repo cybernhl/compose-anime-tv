@@ -1,6 +1,7 @@
 package com.seiko.tv.anime.ui.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyRow
@@ -26,6 +27,8 @@ import com.seiko.tv.anime.ui.common.SetSystemBarColor
 import com.seiko.tv.anime.ui.common.foundation.RoundIcon
 import com.seiko.tv.anime.ui.composer.navigation.Router
 import org.koin.androidx.compose.koinViewModel
+import androidx.compose.foundation.layout.Box
+import com.seiko.compose.focuskit.focusClick
 
 @Composable
 fun HomeScene() {
@@ -47,19 +50,17 @@ fun HomeScene() {
       itemsIndexed(list) { index, item ->
         val focusRequester = remember { FocusRequester() }
         var isFocused by remember { mutableStateOf(false) }
-
         RoundIcon(
           image = item.icon,
           name = item.name,
           isFocused = isFocused,
           modifier = Modifier
+            // 使用我們新創建的、安全的 focusClick 函式
             .focusClick {
-              focusRequester.requestFocus()
               when (item) {
                 HomeItem.Home -> navigator.push(Router.Feed)
                 HomeItem.Favorite -> navigator.push(Router.Favorite)
-                else -> {
-                }
+                else -> {}
               }
             }
             .onFocusChanged {
@@ -69,6 +70,7 @@ fun HomeScene() {
             .focusOrder(focusRequester)
             .focusTarget()
         )
+
 
         if (focusIndex == index) {
           SideEffect {

@@ -26,7 +26,7 @@ object Versions {
   const val activity = "1.4.0"
   const val lifecycle = "2.4.0"
   const val coreKtx = "1.7.0"
-  const val navigation = "2.4.2"
+  const val navigation = "2.9.3"
   const val navigationCompose = "1.0.0-beta01"
   const val accompanist = "0.20.2"
   const val paging = "3.3.6"

@@ -8,7 +8,9 @@ import androidx.navigation.navOptions
 
 interface AppNavigator {
   fun push(router: Router, isSingleTop: Boolean = false) = push(router.route, isSingleTop)
+
   fun push(route: String, isSingleTop: Boolean = false): Boolean
+
   fun pop(): Boolean
 
   val navController: NavHostController
@@ -33,8 +35,7 @@ class AppNavigatorImpl(activity: Activity) : AppNavigator {
 
   @OptIn(ExperimentalStdlibApi::class)
   override fun pop(): Boolean {
-    // navGraph + backStack
-    if (navController.backQueue.size > 2) {
+    if (navController.previousBackStackEntry != null) {
       return navController.popBackStack()
     }
     return false

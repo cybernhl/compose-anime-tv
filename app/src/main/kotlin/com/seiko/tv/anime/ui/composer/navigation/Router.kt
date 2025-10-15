@@ -19,67 +19,111 @@ import com.seiko.tv.anime.util.encodeUrl
 @Composable
 fun Router(appNavigator: AppNavigator) {
   NavHost(appNavigator.navController, startDestination = initialRoute) {
-    composable(Router.Home) { HomeScene() }
-    composable(Router.Feed) { FeedScene() }
-    composable(Router.Detail) {
+    composable(Router.Home.route) { HomeScene() }
+    composable(Router.Feed.route) { FeedScene() }
+    composable(Router.Detail.route) {
       DetailScene(Router.Detail.getUri(it))
     }
-    composable(Router.Player) {
+    composable(Router.Player.route) {
       PlayerScene(Router.Player.getUri(it))
     }
-    composable(Router.Favorite) { FavoriteScene() }
-    composable(Router.TagPage) {
+    composable(Router.Favorite.route) { FavoriteScene() }
+    composable(Router.TagPage.route) {
       TagScene(Router.TagPage.getUri(it))
     }
   }
 }
 
-private fun NavGraphBuilder.composable(
-  router: Router,
-  arguments: List<NamedNavArgument> = emptyList(),
-  deepLinks: List<NavDeepLink> = emptyList(),
-  content: @Composable (NavBackStackEntry) -> Unit
-) {
-  composable(router.route, arguments, deepLinks, content)
-}
-
 sealed class Router(val route: String) {
 
-  object Home : Router("/home")
+  data object Home : Router("/home")
+  data object Feed : Router("/feed")
+  data object Favorite : Router("/favorite")
 
-  object Feed : Router("/feed")
-
-  object Detail : Router("/detail?uri={uri}") {
-    fun getUri(entry: NavBackStackEntry): String {
-      return entry.arguments?.getString("uri")?.decodeUrl() ?: ""
-    }
-
-    operator fun invoke(uri: String): String {
-      return "/detail?uri=${uri.encodeUrl()}"
-    }
-  }
-
-  object Player : Router("/player?uri={uri}") {
-    fun getUri(entry: NavBackStackEntry): String {
-      return entry.arguments?.getString("uri")?.decodeUrl() ?: ""
-    }
-
-    operator fun invoke(uri: String): String {
-      return "/player?uri=${uri.encodeUrl()}"
+  data class Detail(val uri: String) : Router(route.replace("{uri}", uri.encodeUrl())) {
+    companion object {
+      // 路由模式供 NavGraphBuilder 使用
+      const val route = "/detail?uri={uri}"
+      fun getUri(entry: NavBackStackEntry): String {
+        return entry.arguments?.getString("uri")?.decodeUrl() ?: ""
+      }
     }
   }
 
-  object Favorite : Router("/favorite")
-
-  object TagPage : Router("/tagpage?uri={uri}") {
-    fun getUri(entry: NavBackStackEntry): String {
-      return entry.arguments?.getString("uri")?.decodeUrl() ?: ""
-    }
-
-    operator fun invoke(uri: String): String {
-      return "/tagpage?uri=${uri.encodeUrl()}"
+  data class Player(val uri: String) : Router(route.replace("{uri}", uri.encodeUrl())) {
+    companion object {
+      const val route = "/player?uri={uri}"
+      fun getUri(entry: NavBackStackEntry): String {
+        return entry.arguments?.getString("uri")?.decodeUrl() ?: ""
+      }
     }
   }
+
+  data class TagPage(val uri: String) : Router(route.replace("{uri}", uri.encodeUrl())) {
+    companion object {
+      const val route = "/tagpage?uri={uri}"
+      fun getUri(entry: NavBackStackEntry): String {
+        return entry.arguments?.getString("uri")?.decodeUrl() ?: ""
+      }
+    }
+  }
+
+//  class Home : Router("/home") {
+//    // 為了讓 Router.Home.route 能夠被訪問，我們需要一個伴生對象
+//    companion object {
+//      const val route = "/home"
+//    }
+//  }
+//
+//  class Feed : Router("/feed") {
+//    companion object {
+//      const val route = "/feed"
+//    }
+//  }
+//
+//  // 對於已經是 class 的，我們需要將 route 字串移到伴生對象中
+//  class Detail private constructor(route: String) : Router(route) {
+//    companion object {
+//      const val route = "/detail?uri={uri}"
+//      fun getUri(entry: NavBackStackEntry): String {
+//        return entry.arguments?.getString("uri")?.decodeUrl() ?: ""
+//      }
+//      operator fun invoke(uri: String): String {
+//        return route.replace("{uri}", uri.encodeUrl())
+//      }
+//    }
+//  }
+//
+//  class Player private constructor(route: String) : Router(route) {
+//    companion object {
+//      const val route = "/player?uri={uri}"
+//      fun getUri(entry: NavBackStackEntry): String {
+//        return entry.arguments?.getString("uri")?.decodeUrl() ?: ""
+//      }
+//      operator fun invoke(uri: String): String {
+//        return route.replace("{uri}", uri.encodeUrl())
+//      }
+//    }
+//  }
+//
+//  class Favorite : Router("/favorite") {
+//    companion object {
+//      const val route = "/favorite"
+//    }
+//  }
+//
+//  class TagPage private constructor(route: String) : Router(route) {
+//    companion object {
+//      const val route = "/tagpage?uri={uri}"
+//      fun getUri(entry: NavBackStackEntry): String {
+//        return entry.arguments?.getString("uri")?.decodeUrl() ?: ""
+//      }
+//      operator fun invoke(uri: String): String {
+//        return route.replace("{uri}", uri.encodeUrl())
+//      }
+//    }
+//  }
+
 }
 
 private val initialRoute = Router.Home.route
