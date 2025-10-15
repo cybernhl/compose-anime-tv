@@ -3,8 +3,8 @@ import org.gradle.api.JavaVersion
 object Versions {
   object Kotlin {
     const val lang = "1.9.25"
-    const val coroutines = "1.5.2"
-    const val serialization = "1.3.0"
+    const val coroutines = "1.9.0"
+    const val serialization = "1.7.3"
   }
 
   object Java {
