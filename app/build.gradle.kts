@@ -4,6 +4,7 @@ plugins {
   alias(libs.plugins.kotlin.parcelize)
   alias(libs.plugins.ksp)
   id("de.mannodermaus.android-junit5")
+  alias(libs.plugins.jetbrains.compose)
   alias(libs.plugins.compose.compiler)
 }
 
@@ -94,6 +95,7 @@ android {
 }
 
 dependencies {
+  implementation(libs.kotlin.stdlib)
   implementation(project(":core"))
   implementation(project(":feature:service"))
   implementation(libs.androidx.core.ktx)
@@ -115,21 +117,25 @@ dependencies {
   implementation(libs.androidx.room.paging)
 
 
-  implementation(platform(libs.androidx.compose.bom))
-  implementation(libs.androidx.compose.ui)
-  implementation(libs.androidx.compose.ui.tooling)
-  implementation(libs.androidx.compose.foundation)
-  implementation(libs.androidx.compose.animation)
-  implementation(libs.androidx.compose.material)
-  implementation(libs.androidx.compose.material)
-  implementation(libs.androidx.compose.material.icons.core)
-  implementation(libs.androidx.compose.material.icons.extended)
+  implementation(compose.ui)
+  implementation(compose.runtime)
+  implementation(compose.foundation)
+  implementation(compose.animation)
+  implementation(compose.material)
+  implementation(compose.materialIconsExtended)
+  implementation(compose.material3)
+  implementation(compose.components.resources)
+  implementation(compose.preview)
 
 
   implementation(libs.androidx.paging.common.ktx)
   implementation(libs.androidx.paging.runtime)
   implementation(libs.androidx.paging.compose)
-  implementation(libs.androidx.navigation.compose)
+
+  implementation(libs.jetbrains.androidx.navigation.compose   )
+  implementation(libs.jetbrains.androidx.lifecycle.viewmodel  )
+  implementation(libs.jetbrains.androidx.lifecycle.viewmodel.compose  )
+  implementation(libs.jetbrains.androidx.lifecycle.runtime.compose )
 
   implementation(libs.google.accompanist.insets)
   implementation(libs.google.accompanist.systemuicontroller)
@@ -146,6 +152,7 @@ dependencies {
   implementation(libs.koin.compose)
   implementation(libs.koin.android)
   implementation(libs.koin.compose.viewmodel)
+  implementation(libs.koin.compose.viewmodel.navigation)
 
   implementation(libs.timber)
 //    junit5()

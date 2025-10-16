@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+  implementation(libs.kotlin.stdlib)
   implementation(project(":core"))
   implementation(libs.kotlinx.coroutines.core)
   implementation(libs.kotlinx.coroutines.android)
@@ -57,8 +58,8 @@ dependencies {
 
   implementation(libs.koin.core)
   implementation(libs.koin.android)
-
   implementation(libs.koin.compose)
+
   implementation(libs.timber)
 //  junit5()
 }
