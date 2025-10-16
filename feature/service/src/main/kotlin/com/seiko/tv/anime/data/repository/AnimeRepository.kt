@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class AnimeRepository(
   private val service: SakuraService,
@@ -50,6 +51,7 @@ class AnimeRepository(
           AnimeGroup(
             response.titles[index],
             item.animes.map {
+              Timber.e("Show me Anime : title : ${it.title} \n cover : ${it.cover} \n uri : ${it.href}")
               Anime(
                 title = it.title,
                 cover = it.cover,

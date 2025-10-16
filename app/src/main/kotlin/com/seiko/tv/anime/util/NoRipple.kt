@@ -18,17 +18,14 @@ object NoRippleIndication : Indication, IndicationNodeFactory {
 
   private object NoRippleIndicationNode : Modifier.Node(), DrawModifierNode {
     override fun ContentDrawScope.draw() {
-      // 只绘制原始内容，不添加任何视觉效果
       drawContent()
     }
   }
 
   override fun create(interactionSource: InteractionSource): DelegatableNode {
-    // 为所有实例返回同一个共享的、无状态的 Node
     return NoRippleIndicationNode
   }
 
-  // 为保证单例对象的正确性，重写 equals 和 hashCode
   override fun equals(other: Any?): Boolean {
     return other === this
   }

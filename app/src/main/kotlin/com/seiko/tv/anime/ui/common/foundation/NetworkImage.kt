@@ -10,6 +10,7 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
 import com.seiko.tv.anime.R
+import timber.log.Timber
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
@@ -19,6 +20,8 @@ fun NetworkImage(
   contentScale: ContentScale = ContentScale.Crop,
   placeholder: @Composable (() -> Unit)? = null,
 ) {
+  Timber.tag("NetworkImage").d("Loading image with data: $data")
+
   val painter = if (data is Painter) {
     data
   } else {
