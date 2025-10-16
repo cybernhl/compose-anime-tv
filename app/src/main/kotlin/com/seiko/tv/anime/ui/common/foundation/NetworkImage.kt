@@ -1,18 +1,11 @@
 package com.seiko.tv.anime.ui.common.foundation
 
-import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.stringResource
-import coil.annotation.ExperimentalCoilApi
-import coil.compose.ImagePainter
-import coil.compose.rememberImagePainter
+import coil3.compose.AsyncImage
 import com.seiko.tv.anime.R
 import timber.log.Timber
-
-@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun NetworkImage(
   data: Any,
@@ -21,24 +14,34 @@ fun NetworkImage(
   placeholder: @Composable (() -> Unit)? = null,
 ) {
   Timber.tag("NetworkImage").d("Loading image with data: $data")
-
-  val painter = if (data is Painter) {
-    data
-  } else {
-    rememberImagePainter(
-      data = data,
-      builder = {
-        crossfade(true)
-      }
-    )
-  }
-  if (painter is ImagePainter && painter.state is ImagePainter.State.Loading) {
-    placeholder?.invoke()
-  }
-  Image(
-    painter = painter,
+  AsyncImage(
+    model = data,
+    contentDescription = "",
     modifier = modifier,
-    contentScale = contentScale,
-    contentDescription = stringResource(id = R.string.accessibility_common_network_image)
+    contentScale = contentScale
+    // 注意：Coil 3 的 AsyncImage 没有直接接收 Composable 作为 placeholder 的参数。
+    // 它有 placeholder: Painter? 参数。
+    // 如果需要复杂的加载中 UI，需要使用 AsyncImage 的 content 参数，如下所示：
+    /*
+    content = { state ->
+      when (state) {
+        is AsyncImagePainter.State.Loading -> {
+          placeholder?.invoke()
+        }
+        is AsyncImagePainter.State.Success -> {
+          Image(
+            painter = state.painter,
+            contentDescription = ...,
+            contentScale = ...,
+            modifier = ...
+          )
+        }
+        else -> { // Error or Empty
+          // 可以显示错误状态的UI
+        }
+      }
+    }
+    */
   )
 }
+

@@ -42,7 +42,12 @@ fun DependencyHandlerScope.android() {
   api("androidx.core:core-ktx", Versions.coreKtx)
   implementation("androidx.activity:activity-ktx", Versions.activity)
   implementation("androidx.activity:activity-compose", Versions.activity)
-  implementation("io.coil-kt:coil-compose", Versions.coil)
+  implementation("io.coil-kt.coil3:coil-core", "3.3.0")
+  implementation("io.coil-kt.coil3:coil", "3.3.0")
+  implementation("io.coil-kt.coil3:coil-compose-core", "3.3.0")
+  implementation("io.coil-kt.coil3:coil-network-core", "3.3.0")
+  implementation("io.coil-kt.coil3:coil-network-okhttp", "3.3.0")
+  implementation("io.coil-kt.coil3:coil-compose", "3.3.0")
 }
 
 fun DependencyHandlerScope.lifecycle() {
