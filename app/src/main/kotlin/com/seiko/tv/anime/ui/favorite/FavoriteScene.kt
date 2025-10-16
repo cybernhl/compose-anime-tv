@@ -28,7 +28,7 @@ import com.seiko.tv.anime.LocalAppNavigator
 import com.seiko.tv.anime.ui.common.foundation.GroupItem
 import com.seiko.tv.anime.ui.common.foundation.LazyGridFor
 import com.seiko.tv.anime.ui.composer.navigation.Router
-import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 private const val FavoriteColumnNum = 5
 

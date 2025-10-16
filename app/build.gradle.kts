@@ -1,24 +1,30 @@
 plugins {
   id("com.android.application")
   kotlin("android")
-  kotlin("plugin.parcelize")
-  id("com.google.devtools.ksp").version(Versions.ksp)
-  id("org.jetbrains.kotlin.plugin.compose") version "2.2.0"
+  alias(libs.plugins.kotlin.parcelize)
+  alias(libs.plugins.ksp)
   id("de.mannodermaus.android-junit5")
+  alias(libs.plugins.compose.compiler)
 }
 
 android {
-  namespace= Package.applicationId
-  compileSdk = AndroidSdk.compile
-  buildToolsVersion = AndroidSdk.buildTools
+  namespace = "com.seiko.tv.anime"
+  compileSdk = 36
+
+  buildFeatures {
+    compose = true
+    buildConfig = true
+  }
+
   defaultConfig {
-    applicationId = Package.applicationId
-    minSdk = AndroidSdk.min
-    targetSdk = AndroidSdk.target
-    versionCode = Package.versionCode
-    versionName = Package.versionName
+    applicationId = "com.seiko.tv.anime"
+    minSdk = 23
+    targetSdk = 36
+    versionCode = 1
+    versionName = "1.0.0"
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
+
   signingConfigs {
     getByName("debug") {
       storeFile = rootProject.file("secrets/debug-keystore.jks")
@@ -27,10 +33,12 @@ android {
       keyPassword = "123456"
     }
   }
+
   buildTypes {
     debug {
       signingConfig = signingConfigs.getByName("debug")
     }
+
     release {
       isMinifyEnabled = false
       proguardFiles(
@@ -39,15 +47,18 @@ android {
       )
     }
   }
+
   sourceSets {
     getByName("debug") {
       java.srcDir(File("build/generated/ksp/debug/kotlin"))
     }
   }
+
   compileOptions {
-    sourceCompatibility = Versions.Java.java
-    targetCompatibility = Versions.Java.java
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
   }
+
   kotlinOptions {
     jvmTarget = JavaVersion.VERSION_11.toString()
     allWarningsAsErrors = false
@@ -56,16 +67,15 @@ android {
       "-Xallow-unstable-dependencies"
     )
   }
-  buildFeatures {
-    buildConfig = true
-    compose = true
-  }
 
   packagingOptions {
     resources {
       excludes.addAll(
         listOf(
           "META-INF/AL2.0",
+          "META-INF/LGPL2.1",
+          "META-INF/versions/9/OSGI-INF/MANIFEST.MF",
+          "META-INF/LGPL2.1",
           "META-INF/LGPL2.1",
         )
       )
@@ -86,15 +96,61 @@ android {
 dependencies {
   implementation(project(":core"))
   implementation(project(":feature:service"))
+  implementation(libs.androidx.core.ktx)
+  implementation(libs.androidx.activity.ktx)
+  implementation(libs.androidx.activity.compose)
 
-  compose()
-  android()
-  kotlinCoroutines()
-  room()
+  implementation(libs.kotlinx.coroutines.core)
+  implementation(libs.kotlinx.coroutines.android)
+  implementation(libs.kotlinx.serialization.json)
 
-  junit5()
-  test()
-  androidTest()
+  implementation(libs.okhttp.interceptor.logging)
+  implementation(libs.okhttp)
+  implementation(libs.jsoup)
+  implementation(libs.hson)
+
+  implementation(libs.androidx.room.runtime)
+  ksp(libs.androidx.room.compiler)
+  implementation(libs.androidx.room.ktx)
+  implementation(libs.androidx.room.paging)
+
+
+  implementation(platform(libs.androidx.compose.bom))
+  implementation(libs.androidx.compose.ui)
+  implementation(libs.androidx.compose.ui.tooling)
+  implementation(libs.androidx.compose.foundation)
+  implementation(libs.androidx.compose.animation)
+  implementation(libs.androidx.compose.material)
+  implementation(libs.androidx.compose.material)
+  implementation(libs.androidx.compose.material.icons.core)
+  implementation(libs.androidx.compose.material.icons.extended)
+
+
+  implementation(libs.androidx.paging.common.ktx)
+  implementation(libs.androidx.paging.runtime)
+  implementation(libs.androidx.paging.compose)
+  implementation(libs.androidx.navigation.compose)
+
+  implementation(libs.google.accompanist.insets)
+  implementation(libs.google.accompanist.systemuicontroller)
+  implementation(libs.google.accompanist.pager )
+
+
+  implementation(libs.coil)
+  implementation(libs.coil.core)
+  implementation(libs.coil.compose)
+  implementation(libs.coil.network.okhttp )
+
+
+  implementation(libs.koin.core)
+  implementation(libs.koin.compose)
+  implementation(libs.koin.android)
+  implementation(libs.koin.compose.viewmodel)
+
+  implementation(libs.timber)
+//    junit5()
+//    test()
+//    androidTest()
 
   // hidden api by pass https://github.com/tiann/FreeReflection
   implementation("com.github.tiann:FreeReflection:3.1.0")

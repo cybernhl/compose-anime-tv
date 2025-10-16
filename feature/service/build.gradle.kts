@@ -1,21 +1,29 @@
 plugins {
   id("com.android.library")
   kotlin("android")
-  id("com.google.devtools.ksp").version(Versions.ksp)
-  id("androidx.room") version "2.8.2"
+  alias(libs.plugins.room)
+  alias(libs.plugins.ksp)
   id("de.mannodermaus.android-junit5")
 }
 
 android {
-  compileSdk = AndroidSdk.compile
-  namespace= "com.seiko.tv.anime.feature.service"
+  namespace = "com.seiko.tv.anime.feature.service"
+  compileSdk = 36
+
   buildFeatures {
     buildConfig = true
   }
-  compileOptions {
-    sourceCompatibility = Versions.Java.java
-    targetCompatibility = Versions.Java.java
+
+  defaultConfig {
+    minSdk = 23
+    targetSdk = 36
   }
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+  }
+
   kotlinOptions {
     jvmTarget = JavaVersion.VERSION_11.toString()
     allWarningsAsErrors = false
@@ -24,6 +32,7 @@ android {
       "-Xallow-unstable-dependencies"
     )
   }
+
   room {
     schemaDirectory("$projectDir/schemas")
   }
@@ -31,10 +40,25 @@ android {
 
 dependencies {
   implementation(project(":core"))
-  kotlinCoroutines()
-  kotlinSerialization()
-  network()
-  room()
-  paging()
-  junit5()
+  implementation(libs.kotlinx.coroutines.core)
+  implementation(libs.kotlinx.coroutines.android)
+  implementation(libs.kotlinx.serialization.json)
+
+  implementation(libs.okhttp.interceptor.logging)
+  implementation(libs.okhttp)
+  implementation(libs.jsoup)
+  implementation(libs.hson)
+
+  implementation(libs.androidx.room.runtime)
+  ksp(libs.androidx.room.compiler)
+  implementation(libs.androidx.room.ktx)
+  implementation(libs.androidx.room.paging)
+  implementation(libs.androidx.paging.common.ktx)
+
+  implementation(libs.koin.core)
+  implementation(libs.koin.android)
+
+  implementation(libs.koin.compose)
+  implementation(libs.timber)
+//  junit5()
 }

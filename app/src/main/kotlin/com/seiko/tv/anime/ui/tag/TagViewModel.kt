@@ -7,18 +7,12 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.seiko.tv.anime.data.repository.AnimeRepository
-import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
-
-class TagViewModel(
-  uri: String,
-  repository: AnimeRepository,
-) : ViewModel() {
-
+class TagViewModel(uri: String, repository: AnimeRepository,) : ViewModel() {
   val animes = Pager(PagingConfig(pageSize = 20)) {
     TagPagingSource(uri, repository)
   }.flow.cachedIn(viewModelScope)
-
 }
 
 @Composable

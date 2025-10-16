@@ -26,9 +26,7 @@ import com.seiko.tv.anime.LocalAppNavigator
 import com.seiko.tv.anime.ui.common.SetSystemBarColor
 import com.seiko.tv.anime.ui.common.foundation.RoundIcon
 import com.seiko.tv.anime.ui.composer.navigation.Router
-import org.koin.androidx.compose.koinViewModel
-import androidx.compose.foundation.layout.Box
-import com.seiko.compose.focuskit.focusClick
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun HomeScene() {
