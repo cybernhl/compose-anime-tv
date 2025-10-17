@@ -47,6 +47,8 @@ dependencies {
 
   implementation(libs.okhttp.interceptor.logging)
   implementation(libs.okhttp)
+  implementation(libs.ktor.client.cio)
+  implementation(libs.ktor.client.logging  )
   implementation(libs.jsoup)
   implementation(libs.hson)
 
