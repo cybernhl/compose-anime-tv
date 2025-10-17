@@ -50,7 +50,7 @@ dependencies {
   implementation(libs.ktor.client.cio)
   implementation(libs.ktor.client.logging  )
   implementation(libs.jsoup)
-  implementation(libs.hson)
+
 
   implementation(libs.androidx.room.runtime)
   ksp(libs.androidx.room.compiler)

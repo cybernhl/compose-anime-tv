@@ -1,13 +1,4 @@
 package com.seiko.tv.anime.data.remote.response.sakura
-
-import com.seiko.tv.anime.util.serializer.PlayUrlStringSerializer
-import moe.tlaster.hson.annotations.HtmlSerializable
-
-internal data class VideoResponse(
-  @HtmlSerializable(
-    "div.bofang > div",
-    attr = "data-vid",
-    serializer = PlayUrlStringSerializer::class
-  )
+data class VideoResponse(
   val playUrl: String,
 )
