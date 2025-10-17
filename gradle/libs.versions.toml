@@ -169,12 +169,15 @@ media3ExoplayerDash = "1.21.2"
 media3 = "1.8.0"
 #endregion
 #region jsoup
-jsoup = "1.13.1"
+jsoup = "1.21.2"
+#endregion
+#region jsoup
+ksoup = "0.2.5"
 #endregion
 #region hson
 hson = "0.1.5"
 #endregion
-#region hson
+#region appcenter
 appcenter = "5.0.6"
 #endregion
 junit = "4.13.2"
@@ -618,7 +621,13 @@ media3-datasource-okhttp = { module = "androidx.media3:media3-datasource-okhttp"
 #endregion
 
 #region jsoup
-jsoup = { module = "org.jsoup:jsoup", version.ref = "media3ExoplayerDash" }
+jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
+#endregion
+#region jsoup
+ksoup = { module = "com.fleeksoft.ksoup:ksoup", version.ref = "ksoup" }
+ksoup-kotlinx = { module = "com.fleeksoft.ksoup:ksoup-kotlinx", version.ref = "ksoup" }
+ksoup-okio = { module = "com.fleeksoft.ksoup:ksoup-okio", version.ref = "ksoup" }
+ksoup-network= { module = "com.fleeksoft.ksoup:ksoup-network", version.ref = "ksoup" }
 #endregion
 #region jsoup
 hson = { module = "com.github.qdsfdhvh:Hson", version.ref = "hson" }
