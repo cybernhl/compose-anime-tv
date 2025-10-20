@@ -10,7 +10,7 @@ import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import org.koin.dsl.module
 import timber.log.Timber
-internal val httpModule = module {
+val httpModule = module {
     single {
         val client = createHttpClient()
         SakuraService(YHDM_BAS_URL, client)

@@ -86,6 +86,7 @@ kotlin {
 //      implementation(libs.androidx.paging.compose)
 
             implementation(libs.kotlinx.atomicfu)
+            implementation(project(":feature:service"))
 
 
         }
@@ -165,8 +166,6 @@ android {
 }
 
 dependencies {
-
-
 }
 
 compose.resources {
