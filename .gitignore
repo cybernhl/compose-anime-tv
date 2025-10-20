@@ -32,6 +32,6 @@ build/
 captures/
 
 /.idea
-
+/feature/service/schemas
 # hprot
 *.trace
